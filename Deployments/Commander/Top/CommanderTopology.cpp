@@ -135,6 +135,9 @@ void configureTopology(const TopologyState& state) {
     configurationTable.entries[2] = {.depth = 100, .priority = 1};
     // Allocation identifier is 0 as the MallocAllocator discards it
     comQueue.configure(configurationTable, 0, mallocator);
+    hubComQueue_0.configure(configurationTable, 1, mallocator);
+    hubComQueue_1.configure(configurationTable, 2, mallocator);
+    hubComQueue_2.configure(configurationTable, 3, mallocator);
     if (state.hostname != nullptr && state.port != 0) {
         comDriver.configure(state.hostname, state.port);
     }
@@ -147,17 +150,17 @@ void configureTopology(const TopologyState& state) {
     hubFramer_2.setup(hubFraming_2);
     hubDeframer_2.setup(hubDeframing_2);
 
-    hubComDriver_0.configure("0.0.0.0", 50100);
+    hubComDriver_0.configure("0.0.0.0", 55000);
     Os::TaskString hubName_0("hub");
-    hubComDriver_0.start(hubName_0, true, COMM_PRIORITY, Default::STACK_SIZE);
+    hubComDriver_0.start(hubName_0, COMM_PRIORITY, Default::STACK_SIZE);
     
-    hubComDriver_1.configure("0.0.0.0", 50110);
+    hubComDriver_1.configure("0.0.0.0", 55010);
     Os::TaskString hubName_1("hub");
-    hubComDriver_1.start(hubName_1, true, COMM_PRIORITY, Default::STACK_SIZE);
+    hubComDriver_1.start(hubName_1, COMM_PRIORITY, Default::STACK_SIZE);
     
-    hubComDriver_2.configure("0.0.0.0", 50120);
+    hubComDriver_2.configure("0.0.0.0", 55020);
     Os::TaskString hubName_2("hub");
-    hubComDriver_2.start(hubName_2, true, COMM_PRIORITY, Default::STACK_SIZE);    
+    hubComDriver_2.start(hubName_2, COMM_PRIORITY, Default::STACK_SIZE);  
 }
 
 // Public functions for use in main program are namespaced with deployment name Commander
@@ -185,7 +188,7 @@ void setupTopology(const TopologyState& state) {
         // Uplink is configured for receive so a socket task is started
         comDriver.start(name, COMM_PRIORITY, Default::STACK_SIZE);
     }
-
+ 
 }
 
 // Variables used for cycle simulation

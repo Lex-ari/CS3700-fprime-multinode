@@ -137,9 +137,9 @@ void configureTopology(const TopologyState& state) {
 
     hubFramer.setup(hubFraming);
     hubDeframer.setup(hubDeframing);
-    hubComDriver.configure("0.0.0.0", 50500);
+    hubComDriver.configure("0.0.0.0", 55020);
     Os::TaskString hubName("hub");
-    hubComDriver.start(hubName, true, COMM_PRIORITY, Default::STACK_SIZE);
+    hubComDriver.start(hubName, COMM_PRIORITY, Default::STACK_SIZE);
 }
 
 // Public functions for use in main program are namespaced with deployment name Node_2
@@ -203,6 +203,8 @@ void teardownTopology(const TopologyState& state) {
     // Other task clean-up.
     comDriver.stop();
     (void)comDriver.join();
+    hubComDriver.stop();
+    (void)hubComDriver.join();
 
     // Resource deallocation
     cmdSeq.deallocateBuffer(mallocator);
