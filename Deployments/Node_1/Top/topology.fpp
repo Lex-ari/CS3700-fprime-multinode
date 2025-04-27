@@ -42,6 +42,14 @@ module Node_1 {
     instance textLogger
     instance systemResources
 
+    # Hub Communication 
+    instance hub
+    instance hubComDriver
+    instance hubComStub
+    instance hubComQueue
+    instance hubDeframer
+    instance hubFramer
+
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------
@@ -135,6 +143,28 @@ module Node_1 {
 
     connections Node_1 {
       # Add here connections to user-defined components
+    }
+
+    connections send_hub {
+      hub.dataOut -> hubFramer.bufferIn
+      hub.dataOutAllocate -> bufferManager.bufferGetCallee
+
+      hubFramer.framedOut -> hubComDriver.$send
+      hubFramer.bufferDeallocate -> bufferManager.bufferSendIn
+      hubFramer.framedAllocate -> bufferManager.bufferGetCallee
+
+      hubComDriver.deallocate -> bufferManager.bufferSendIn
+    }
+
+    connections recv_hub {
+      hubComDriver.$recv -> hubDeframer.framedIn
+      hubComDriver.allocate -> bufferManager.bufferGetCallee
+      
+      hubDeframer.bufferOut -> hub.dataIn 
+      hubDeframer.framedDeallocate -> bufferManager.bufferSendIn
+      hubDeframer.bufferAllocate -> bufferManager.bufferGetCallee
+
+      hub.dataInDeallocate -> bufferManager.bufferSendIn
     }
 
   }

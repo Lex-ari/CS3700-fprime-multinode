@@ -121,4 +121,43 @@ module Commander {
 
   instance comStub: Svc.ComStub base id 0x4B00
 
+
+
+  # Hub Interfaces
+
+  instance hub_0: Svc.GenericHub base id 0x9000
+  instance hub_1: Svc.GenericHub base id 0x9010
+  instance hub_2: Svc.GenericHub base id 0x9020
+
+  instance hubComDriver_0: Drv.TcpServer base id 0x9100
+  instance hubComDriver_1: Drv.TcpServer base id 0x9110
+  instance hubComDriver_2: Drv.TcpServer base id 0x9120
+  
+  instance hubDeframer_0: Svc.Deframer base id 0x9300
+  instance hubDeframer_1: Svc.Deframer base id 0x9310
+  instance hubDeframer_2: Svc.Deframer base id 0x9320
+
+  instance hubFramer_0: Svc.Framer base id 0x9400
+  instance hubFramer_1: Svc.Framer base id 0x9410
+  instance hubFramer_2: Svc.Framer base id 0x9420
+
+  instance hubComQueue_0: Svc.ComQueue base id 0x9500 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 100 \
+
+  instance hubComQueue_1: Svc.ComQueue base id 0x9510 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 100 \
+
+  instance hubComQueue_2: Svc.ComQueue base id 0x9520 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 100 \
+
+
+
+
+
 }

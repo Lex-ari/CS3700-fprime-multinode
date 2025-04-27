@@ -42,6 +42,25 @@ module Commander {
     instance textLogger
     instance systemResources
 
+    # Hub Communication 
+    instance hub_0
+    instance hubComDriver_0
+    instance hubComQueue_0
+    instance hubDeframer_0
+    instance hubFramer_0
+    instance hub_1
+    instance hubComDriver_1
+    instance hubComQueue_1
+    instance hubDeframer_1
+    instance hubFramer_1
+    instance hub_2
+    instance hubComDriver_2
+    instance hubComQueue_2
+    instance hubDeframer_2
+    instance hubFramer_2
+
+
+
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------
@@ -131,6 +150,72 @@ module Commander {
       deframer.bufferOut -> fileUplink.bufferSendIn
       deframer.bufferDeallocate -> bufferManager.bufferSendIn
       fileUplink.bufferSendOut -> bufferManager.bufferSendIn
+    }
+
+    connections send_hub_0 {
+      hub_0.dataOut -> hubFramer_0.bufferIn
+      hub_0.dataOutAllocate -> bufferManager.bufferGetCallee
+
+      hubFramer_0.framedOut -> hubComDriver_0.$send
+      hubFramer_0.bufferDeallocate -> bufferManager.bufferSendIn
+      hubFramer_0.framedAllocate -> bufferManager.bufferGetCallee
+
+      hubComDriver_0.deallocate -> bufferManager.bufferSendIn
+    }
+
+    connections recv_hub_0 {
+      hubComDriver_0.$recv -> hubDeframer_0.framedIn
+      hubComDriver_0.allocate -> bufferManager.bufferGetCallee
+      
+      hubDeframer_0.bufferOut -> hub_0.dataIn 
+      hubDeframer_0.framedDeallocate -> bufferManager.bufferSendIn
+      hubDeframer_0.bufferAllocate -> bufferManager.bufferGetCallee
+
+      hub_0.dataInDeallocate -> bufferManager.bufferSendIn
+    }
+
+    connections send_hub_1 {
+      hub_1.dataOut -> hubFramer_1.bufferIn
+      hub_1.dataOutAllocate -> bufferManager.bufferGetCallee
+
+      hubFramer_1.framedOut -> hubComDriver_1.$send
+      hubFramer_1.bufferDeallocate -> bufferManager.bufferSendIn
+      hubFramer_1.framedAllocate -> bufferManager.bufferGetCallee
+
+      hubComDriver_1.deallocate -> bufferManager.bufferSendIn
+    }
+
+    connections recv_hub_1 {
+      hubComDriver_1.$recv -> hubDeframer_1.framedIn
+      hubComDriver_1.allocate -> bufferManager.bufferGetCallee
+      
+      hubDeframer_1.bufferOut -> hub_1.dataIn 
+      hubDeframer_1.framedDeallocate -> bufferManager.bufferSendIn
+      hubDeframer_1.bufferAllocate -> bufferManager.bufferGetCallee
+
+      hub_1.dataInDeallocate -> bufferManager.bufferSendIn
+    }
+
+    connections send_hub_2 {
+      hub_2.dataOut -> hubFramer_2.bufferIn
+      hub_2.dataOutAllocate -> bufferManager.bufferGetCallee
+
+      hubFramer_2.framedOut -> hubComDriver_2.$send
+      hubFramer_2.bufferDeallocate -> bufferManager.bufferSendIn
+      hubFramer_2.framedAllocate -> bufferManager.bufferGetCallee
+
+      hubComDriver_2.deallocate -> bufferManager.bufferSendIn
+    }
+
+    connections recv_hub_2 {
+      hubComDriver_2.$recv -> hubDeframer_2.framedIn
+      hubComDriver_2.allocate -> bufferManager.bufferGetCallee
+      
+      hubDeframer_2.bufferOut -> hub_2.dataIn 
+      hubDeframer_2.framedDeallocate -> bufferManager.bufferSendIn
+      hubDeframer_2.bufferAllocate -> bufferManager.bufferGetCallee
+
+      hub_2.dataInDeallocate -> bufferManager.bufferSendIn
     }
 
     connections Commander {

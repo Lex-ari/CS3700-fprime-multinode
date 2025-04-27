@@ -121,4 +121,21 @@ module Node_1 {
 
   instance comStub: Svc.ComStub base id 0x4B00
 
+  # Hub Interfaces
+
+  instance hub: Svc.GenericHub base id 0x9000
+
+  instance hubComDriver: Drv.TcpClient base id 0x9100
+  
+  instance hubComStub: Svc.ComStub base id 0x9200
+
+  instance hubDeframer: Svc.Deframer base id 0x9300
+
+  instance hubFramer: Svc.Framer base id 0x9400
+
+  instance hubComQueue: Svc.ComQueue base id 0x9500 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 100 \
+
 }
