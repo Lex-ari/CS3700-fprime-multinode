@@ -87,6 +87,12 @@ module Node_2 {
     stack size Default.STACK_SIZE \
     priority 96
 
+
+  instance pong: Components.TestPong base id 0x5000 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 96
+  
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------

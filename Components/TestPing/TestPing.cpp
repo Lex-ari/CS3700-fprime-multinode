@@ -26,16 +26,34 @@ namespace Components {
   }
 
   // ----------------------------------------------------------------------
+  // Handler implementations for typed input ports
+  // ----------------------------------------------------------------------
+
+  void TestPing ::
+    pong_handler(
+        FwIndexType portNum,
+        U16 nodeID
+    )
+  {
+    this->log_ACTIVITY_HI_Pong(nodeID);
+  }
+
+  // ----------------------------------------------------------------------
   // Handler implementations for commands
   // ----------------------------------------------------------------------
 
   void TestPing ::
-    TODO_cmdHandler(
+    PingNodes_cmdHandler(
         FwOpcodeType opCode,
         U32 cmdSeq
     )
   {
-    // TODO
+    this->ping0_out(0, 0);
+    this->log_ACTIVITY_HI_Ping(0);
+    this->ping1_out(0, 1);
+    this->log_ACTIVITY_HI_Ping(1);
+    this->ping2_out(0, 2);
+    this->log_ACTIVITY_HI_Ping(2);
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 

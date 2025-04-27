@@ -42,6 +42,8 @@ module Commander {
     instance textLogger
     instance systemResources
 
+    instance ping
+
     # Hub Communication 
     instance hub_0
     instance hubComDriver_0
@@ -220,6 +222,12 @@ module Commander {
 
     connections Commander {
       # Add here connections to user-defined components
+      ping.ping0 -> hub_0.portIn[0]
+      ping.ping1 -> hub_1.portIn[0]
+      ping.ping2 -> hub_2.portIn[0]
+      hub_0.portOut[0] -> ping.pong
+      hub_1.portOut[0] -> ping.pong
+      hub_2.portOut[0] -> ping.pong
     }
 
   }

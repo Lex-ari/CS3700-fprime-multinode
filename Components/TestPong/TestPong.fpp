@@ -1,11 +1,18 @@
 module Components {
     @ Component for F Prime FSW framework.
     active component TestPong {
-
+        
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
         @ TODO
         async command TODO opcode 0
+
+        event Pong(nodeID: U32) severity activity high id 0 format "I have been ponged! Node {}"
+        event Ping() severity activity high id 1 format "Pinging Back!"
+
+        async input port pong: Ping
+
+        output port ping: Ping
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

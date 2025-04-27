@@ -5,7 +5,16 @@ module Components {
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
         @ TODO
-        async command TODO opcode 0
+        async command PingNodes opcode 0
+
+        output port ping0: Ping
+        output port ping1: Ping
+        output port ping2: Ping
+
+        event Ping(nodeID: U16) severity activity high id 0 format "I pinged {}"
+        event Pong(nodeID: U16) severity activity high id 1 format "I ponged from {}"
+
+        async input port pong: Ping
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

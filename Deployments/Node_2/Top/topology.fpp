@@ -42,6 +42,8 @@ module Node_2 {
     instance textLogger
     instance systemResources
 
+    instance pong
+
     # Hub Communication 
     instance hub
     instance hubComDriver
@@ -165,6 +167,8 @@ module Node_2 {
 
     connections Node_2 {
       # Add here connections to user-defined components
+      hub.portOut[0] -> pong.pong
+      pong.ping -> hub.portIn[0]
     }
 
   }

@@ -87,6 +87,11 @@ module Commander {
     stack size Default.STACK_SIZE \
     priority 96
 
+  instance ping: Components.TestPing base id 0x5000 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 96
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
@@ -120,8 +125,6 @@ module Commander {
   instance systemResources: Svc.SystemResources base id 0x4A00
 
   instance comStub: Svc.ComStub base id 0x4B00
-
-
 
   # Hub Interfaces
 

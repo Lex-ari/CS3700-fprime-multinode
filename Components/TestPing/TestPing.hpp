@@ -32,13 +32,25 @@ namespace Components {
     PRIVATE:
 
       // ----------------------------------------------------------------------
+      // Handler implementations for typed input ports
+      // ----------------------------------------------------------------------
+
+      //! Handler implementation for pong
+      void pong_handler(
+          FwIndexType portNum, //!< The port number
+          U16 nodeID
+      ) override;
+
+    PRIVATE:
+
+      // ----------------------------------------------------------------------
       // Handler implementations for commands
       // ----------------------------------------------------------------------
 
-      //! Handler implementation for command TODO
+      //! Handler implementation for command PingNodes
       //!
       //! TODO
-      void TODO_cmdHandler(
+      void PingNodes_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq //!< The command sequence number
       ) override;

@@ -32,6 +32,18 @@ namespace Components {
     PRIVATE:
 
       // ----------------------------------------------------------------------
+      // Handler implementations for typed input ports
+      // ----------------------------------------------------------------------
+
+      //! Handler implementation for pong
+      void pong_handler(
+          FwIndexType portNum, //!< The port number
+          U16 nodeID
+      ) override;
+
+    PRIVATE:
+
+      // ----------------------------------------------------------------------
       // Handler implementations for commands
       // ----------------------------------------------------------------------
 
