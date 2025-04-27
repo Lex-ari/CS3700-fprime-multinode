@@ -7,7 +7,7 @@
 #ifndef Components_MonteCarloComponent_HPP
 #define Components_MonteCarloComponent_HPP
 
-#include "Components/MonteCarloComponent/MonteCarloComponentAc.hpp"
+#include "Components/MonteCarloComponent/MonteCarloComponentComponentAc.hpp"
 
 namespace Components {
 
