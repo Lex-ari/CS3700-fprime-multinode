@@ -4,7 +4,7 @@
 //
 // ======================================================================
 // Provides access to autocoded functions
-#include <Commander/Top/CommanderTopologyAc.hpp>
+#include <Deployments/Commander/Top/CommanderTopologyAc.hpp>
 // Note: Uncomment when using Svc:TlmPacketizer
 //#include <Commander/Top/CommanderPacketsAc.hpp>
 
@@ -26,6 +26,12 @@ Fw::MallocAllocator mallocator;
 // framing and deframing implementations.
 Svc::FprimeFraming framing;
 Svc::FprimeDeframing deframing;
+Svc::FprimeFraming hubFraming_0;
+Svc::FprimeDeframing hubDeframing_0;
+Svc::FprimeFraming hubFraming_1;
+Svc::FprimeDeframing hubDeframing_1;
+Svc::FprimeFraming hubFraming_2;
+Svc::FprimeDeframing hubDeframing_2;
 
 Svc::ComQueue::QueueConfigurationTable configurationTable;
 
@@ -132,6 +138,26 @@ void configureTopology(const TopologyState& state) {
     if (state.hostname != nullptr && state.port != 0) {
         comDriver.configure(state.hostname, state.port);
     }
+
+
+    hubFramer_0.setup(hubFraming_0);
+    hubDeframer_0.setup(hubDeframing_0);
+    hubFramer_1.setup(hubFraming_1);
+    hubDeframer_1.setup(hubDeframing_1);
+    hubFramer_2.setup(hubFraming_2);
+    hubDeframer_2.setup(hubDeframing_2);
+
+    hubComDriver_0.configure("0.0.0.0", 50100);
+    Os::TaskString hubName_0("hub");
+    hubComDriver_0.start(hubName_0, true, COMM_PRIORITY, Default::STACK_SIZE);
+    
+    hubComDriver_1.configure("0.0.0.0", 50110);
+    Os::TaskString hubName_1("hub");
+    hubComDriver_1.start(hubName_1, true, COMM_PRIORITY, Default::STACK_SIZE);
+    
+    hubComDriver_2.configure("0.0.0.0", 50120);
+    Os::TaskString hubName_2("hub");
+    hubComDriver_2.start(hubName_2, true, COMM_PRIORITY, Default::STACK_SIZE);    
 }
 
 // Public functions for use in main program are namespaced with deployment name Commander
@@ -159,6 +185,7 @@ void setupTopology(const TopologyState& state) {
         // Uplink is configured for receive so a socket task is started
         comDriver.start(name, COMM_PRIORITY, Default::STACK_SIZE);
     }
+
 }
 
 // Variables used for cycle simulation
@@ -195,6 +222,12 @@ void teardownTopology(const TopologyState& state) {
     // Other task clean-up.
     comDriver.stop();
     (void)comDriver.join();
+    hubComDriver_0.stop();
+    (void)hubComDriver_0.join();
+    hubComDriver_1.stop();
+    (void)hubComDriver_1.join();
+    hubComDriver_2.stop();
+    (void)hubComDriver_2.join();
 
     // Resource deallocation
     cmdSeq.deallocateBuffer(mallocator);

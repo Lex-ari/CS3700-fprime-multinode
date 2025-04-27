@@ -26,6 +26,8 @@ Fw::MallocAllocator mallocator;
 // framing and deframing implementations.
 Svc::FprimeFraming framing;
 Svc::FprimeDeframing deframing;
+Svc::FprimeFraming hubFraming;
+Svc::FprimeDeframing hubDeframing;
 
 Svc::ComQueue::QueueConfigurationTable configurationTable;
 
@@ -132,6 +134,12 @@ void configureTopology(const TopologyState& state) {
     if (state.hostname != nullptr && state.port != 0) {
         comDriver.configure(state.hostname, state.port);
     }
+
+    hubFramer.setup(hubFraming);
+    hubDeframer.setup(hubDeframing);
+    hubComDriver.configure("0.0.0.0", 50500);
+    Os::TaskString hubName("hub");
+    hubComDriver.start(hubName, true, COMM_PRIORITY, Default::STACK_SIZE);
 }
 
 // Public functions for use in main program are namespaced with deployment name Node_0
