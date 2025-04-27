@@ -1,0 +1,34 @@
+// ======================================================================
+// \title  MonteCarloComponent.hpp
+// \author your_name_here
+// \brief  hpp file for MonteCarlo component implementation class
+// ======================================================================
+
+#ifndef Components_MonteCarloComponent_HPP
+#define Components_MonteCarloComponent_HPP
+
+#include "Components/MonteCarloComponent/MonteCarloComponentAc.hpp"
+
+namespace Components {
+
+  class MonteCarloComponent :
+    public MonteCarloComponentComponentBase
+  {
+
+    public:
+
+      // ----------------------------------------------------------------------
+      // Handler implementations for typed input ports
+      // ----------------------------------------------------------------------
+
+      //! Handler implementation for AmountIn
+      void AmountIn_handler(
+          NATIVE_INT_TYPE portNum, //!< The port number
+          U32 amount //!< The amount of random samples
+      ) override;
+
+  };
+
+}
+
+#endif
