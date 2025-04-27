@@ -1,6 +1,6 @@
-<packets name="Node_4Packets" namespace="Node_4" size="111">
+<packets name="Node_2Packets" namespace="Node_2" size="111">
 
-    <import_topology>Node_4/Top/Node_4TopologyAppAi.xml</import_topology>
+    <import_topology>Node_2/Top/Node_2TopologyAppAi.xml</import_topology>
 
     <packet name="CDH" id="1" level="1">
         <channel name="cmdDisp.CommandsDispatched"/>

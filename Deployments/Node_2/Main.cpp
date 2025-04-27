@@ -4,7 +4,7 @@
 //
 // ======================================================================
 // Used to access topology functions
-#include <Node_4/Top/Node_4Topology.hpp>
+#include <Deployments/Node_2/Top/Node_2Topology.hpp>
 // OSAL initialization
 #include <Os/Os.hpp>
 // Used for signal handling shutdown
@@ -34,7 +34,7 @@ void print_usage(const char* app) {
  * @param signum
  */
 static void signalHandler(int signum) {
-    Node_4::stopSimulatedCycle();
+    Node_2::stopSimulatedCycle();
 }
 
 /**
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
         }
     }
     // Object for communicating state to the reference topology
-    Node_4::TopologyState inputs;
+    Node_2::TopologyState inputs;
     inputs.hostname = hostname;
     inputs.port = port_number;
 
@@ -85,9 +85,9 @@ int main(int argc, char* argv[]) {
     (void)printf("Hit Ctrl-C to quit\n");
 
     // Setup, cycle, and teardown topology
-    Node_4::setupTopology(inputs);
-    Node_4::startSimulatedCycle(Fw::TimeInterval(1,0));  // Program loop cycling rate groups at 1Hz
-    Node_4::teardownTopology(inputs);
+    Node_2::setupTopology(inputs);
+    Node_2::startSimulatedCycle(Fw::TimeInterval(1,0));  // Program loop cycling rate groups at 1Hz
+    Node_2::teardownTopology(inputs);
     (void)printf("Exiting...\n");
     return 0;
 }

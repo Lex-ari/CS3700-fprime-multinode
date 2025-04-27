@@ -1,24 +1,24 @@
 // ======================================================================
-// \title  Node_3TopologyDefs.hpp
+// \title  Node_2TopologyDefs.hpp
 // \brief required header file containing the required definitions for the topology autocoder
 //
 // ======================================================================
-#ifndef NODE_3_NODE_3TOPOLOGYDEFS_HPP
-#define NODE_3_NODE_3TOPOLOGYDEFS_HPP
+#ifndef NODE_2_NODE_2TOPOLOGYDEFS_HPP
+#define NODE_2_NODE_2TOPOLOGYDEFS_HPP
 
 #include "Drv/BlockDriver/BlockDriver.hpp"
 #include "Fw/Types/MallocAllocator.hpp"
-#include "Node_3/Top/FppConstantsAc.hpp"
+#include "Deployments/Node_2/Top/FppConstantsAc.hpp"
 #include "Svc/FramingProtocol/FprimeProtocol.hpp"
 #include "Svc/Health/Health.hpp"
 
 // Definitions are placed within a namespace named after the deployment
-namespace Node_3 {
+namespace Node_2 {
 
 /**
  * \brief required type definition to carry state
  *
- * The topology autocoder requires an object that carries state with the name `Node_3::TopologyState`. Only the type
+ * The topology autocoder requires an object that carries state with the name `Node_2::TopologyState`. Only the type
  * definition is required by the autocoder and the contents of this object are otherwise opaque to the autocoder. The contents are entirely up
  * to the definition of the project. Here, they are derived from command line inputs.
  */
@@ -47,42 +47,42 @@ struct TopologyState {
  * ```
  */
 namespace PingEntries {
-namespace Node_3_blockDrv {
+namespace Node_2_blockDrv {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_tlmSend {
+namespace Node_2_tlmSend {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_cmdDisp {
+namespace Node_2_cmdDisp {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_cmdSeq {
+namespace Node_2_cmdSeq {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_eventLogger {
+namespace Node_2_eventLogger {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_fileDownlink {
+namespace Node_2_fileDownlink {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_fileManager {
+namespace Node_2_fileManager {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_fileUplink {
+namespace Node_2_fileUplink {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_prmDb {
+namespace Node_2_prmDb {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_rateGroup1 {
+namespace Node_2_rateGroup1 {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_rateGroup2 {
+namespace Node_2_rateGroup2 {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace Node_3_rateGroup3 {
+namespace Node_2_rateGroup3 {
 enum { WARN = 3, FATAL = 5 };
 }
 }  // namespace PingEntries
-}  // namespace Node_3
+}  // namespace Node_2
 #endif

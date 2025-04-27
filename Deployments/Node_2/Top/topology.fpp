@@ -1,4 +1,4 @@
-module Node_3 {
+module Node_2 {
 
   # ----------------------------------------------------------------------
   # Symbolic constants for port numbers
@@ -10,7 +10,7 @@ module Node_3 {
     rateGroup3
   }
 
-  topology Node_3 {
+  topology Node_2 {
 
     # ----------------------------------------------------------------------
     # Instances used in the topology
@@ -133,7 +133,7 @@ module Node_3 {
       fileUplink.bufferSendOut -> bufferManager.bufferSendIn
     }
 
-    connections Node_3 {
+    connections Node_2 {
       # Add here connections to user-defined components
     }
 

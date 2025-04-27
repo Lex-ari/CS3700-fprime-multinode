@@ -8,9 +8,9 @@
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
   # Note: Uncomment when using Svc:TlmPacketizer
-  #"${CMAKE_CURRENT_LIST_DIR}/Node_4Packets.xml"
+  #"${CMAKE_CURRENT_LIST_DIR}/Node_2Packets.xml"
   "${CMAKE_CURRENT_LIST_DIR}/topology.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/Node_4Topology.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/Node_2Topology.cpp"
 )
 set(MOD_DEPS
   Fw/Logger

@@ -7,7 +7,7 @@
 #define COMMANDER_COMMANDERTOPOLOGY_HPP
 // Included for access to Commander::TopologyState and Commander::ConfigObjects::pingEntries. These definitions are required by the
 // autocoder, but are also used in this hand-coded topology.
-#include <Commander/Top/CommanderTopologyDefs.hpp>
+#include <Deployments/Commander/Top/CommanderTopologyDefs.hpp>
 
 // Remove unnecessary Commander:: qualifications
 using namespace Commander;

@@ -1,7 +1,7 @@
 #####
-# 'Node_4' Deployment:
+# 'Node_2' Deployment:
 #
-# This registers the 'Node_4' deployment to the build system. 
+# This registers the 'Node_2' deployment to the build system. 
 # Custom components that have not been added at the project-level should be added to 
 # the list below.
 #

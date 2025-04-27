@@ -1,12 +1,12 @@
 // ======================================================================
-// \title  Node_3Topology.cpp
+// \title  Node_2Topology.cpp
 // \brief cpp file containing the topology instantiation code
 //
 // ======================================================================
 // Provides access to autocoded functions
-#include <Node_3/Top/Node_3TopologyAc.hpp>
+#include <Deployments/Node_2/Top/Node_2TopologyAc.hpp>
 // Note: Uncomment when using Svc:TlmPacketizer
-//#include <Node_3/Top/Node_3PacketsAc.hpp>
+//#include <Node_2/Top/Node_2PacketsAc.hpp>
 
 // Necessary project-specified types
 #include <Fw/Types/MallocAllocator.hpp>
@@ -16,7 +16,7 @@
 #include <Os/Mutex.hpp>
 
 // Allows easy reference to objects in FPP/autocoder required namespaces
-using namespace Node_3;
+using namespace Node_2;
 
 // The reference topology uses a malloc-based allocator for components that need to allocate memory during the
 // initialization phase.
@@ -59,18 +59,18 @@ enum TopologyConstants {
 
 // Ping entries are autocoded, however; this code is not properly exported. Thus, it is copied here.
 Svc::Health::PingEntry pingEntries[] = {
-    {PingEntries::Node_3_blockDrv::WARN, PingEntries::Node_3_blockDrv::FATAL, "blockDrv"},
-    {PingEntries::Node_3_tlmSend::WARN, PingEntries::Node_3_tlmSend::FATAL, "chanTlm"},
-    {PingEntries::Node_3_cmdDisp::WARN, PingEntries::Node_3_cmdDisp::FATAL, "cmdDisp"},
-    {PingEntries::Node_3_cmdSeq::WARN, PingEntries::Node_3_cmdSeq::FATAL, "cmdSeq"},
-    {PingEntries::Node_3_eventLogger::WARN, PingEntries::Node_3_eventLogger::FATAL, "eventLogger"},
-    {PingEntries::Node_3_fileDownlink::WARN, PingEntries::Node_3_fileDownlink::FATAL, "fileDownlink"},
-    {PingEntries::Node_3_fileManager::WARN, PingEntries::Node_3_fileManager::FATAL, "fileManager"},
-    {PingEntries::Node_3_fileUplink::WARN, PingEntries::Node_3_fileUplink::FATAL, "fileUplink"},
-    {PingEntries::Node_3_prmDb::WARN, PingEntries::Node_3_prmDb::FATAL, "prmDb"},
-    {PingEntries::Node_3_rateGroup1::WARN, PingEntries::Node_3_rateGroup1::FATAL, "rateGroup1"},
-    {PingEntries::Node_3_rateGroup2::WARN, PingEntries::Node_3_rateGroup2::FATAL, "rateGroup2"},
-    {PingEntries::Node_3_rateGroup3::WARN, PingEntries::Node_3_rateGroup3::FATAL, "rateGroup3"},
+    {PingEntries::Node_2_blockDrv::WARN, PingEntries::Node_2_blockDrv::FATAL, "blockDrv"},
+    {PingEntries::Node_2_tlmSend::WARN, PingEntries::Node_2_tlmSend::FATAL, "chanTlm"},
+    {PingEntries::Node_2_cmdDisp::WARN, PingEntries::Node_2_cmdDisp::FATAL, "cmdDisp"},
+    {PingEntries::Node_2_cmdSeq::WARN, PingEntries::Node_2_cmdSeq::FATAL, "cmdSeq"},
+    {PingEntries::Node_2_eventLogger::WARN, PingEntries::Node_2_eventLogger::FATAL, "eventLogger"},
+    {PingEntries::Node_2_fileDownlink::WARN, PingEntries::Node_2_fileDownlink::FATAL, "fileDownlink"},
+    {PingEntries::Node_2_fileManager::WARN, PingEntries::Node_2_fileManager::FATAL, "fileManager"},
+    {PingEntries::Node_2_fileUplink::WARN, PingEntries::Node_2_fileUplink::FATAL, "fileUplink"},
+    {PingEntries::Node_2_prmDb::WARN, PingEntries::Node_2_prmDb::FATAL, "prmDb"},
+    {PingEntries::Node_2_rateGroup1::WARN, PingEntries::Node_2_rateGroup1::FATAL, "rateGroup1"},
+    {PingEntries::Node_2_rateGroup2::WARN, PingEntries::Node_2_rateGroup2::FATAL, "rateGroup2"},
+    {PingEntries::Node_2_rateGroup3::WARN, PingEntries::Node_2_rateGroup3::FATAL, "rateGroup3"},
 };
 
 /**
@@ -119,7 +119,7 @@ void configureTopology(const TopologyState& state) {
     health.setPingEntries(pingEntries, FW_NUM_ARRAY_ELEMENTS(pingEntries), HEALTH_WATCHDOG_CODE);
 
     // Note: Uncomment when using Svc:TlmPacketizer
-    // tlmSend.setPacketList(Node_3PacketsPkts, Node_3PacketsIgnore, 1);
+    // tlmSend.setPacketList(Node_2PacketsPkts, Node_2PacketsIgnore, 1);
 
     // Events (highest-priority)
     configurationTable.entries[0] = {.depth = 100, .priority = 0};
@@ -134,8 +134,8 @@ void configureTopology(const TopologyState& state) {
     }
 }
 
-// Public functions for use in main program are namespaced with deployment name Node_3
-namespace Node_3 {
+// Public functions for use in main program are namespaced with deployment name Node_2
+namespace Node_2 {
 void setupTopology(const TopologyState& state) {
     // Autocoded initialization. Function provided by autocoder.
     initComponents(state);
@@ -172,7 +172,7 @@ void startSimulatedCycle(Fw::TimeInterval interval) {
 
     // Main loop
     while (cycling) {
-        Node_3::blockDrv.callIsr();
+        Node_2::blockDrv.callIsr();
         Os::Task::delay(interval);
 
         cycleLock.lock();
@@ -200,4 +200,4 @@ void teardownTopology(const TopologyState& state) {
     cmdSeq.deallocateBuffer(mallocator);
     bufferManager.cleanup();
 }
-};  // namespace Node_3
+};  // namespace Node_2

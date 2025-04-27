@@ -1,17 +1,17 @@
 // ======================================================================
-// \title  Node_4Topology.hpp
+// \title  Node_2Topology.hpp
 // \brief header file containing the topology instantiation definitions
 //
 // ======================================================================
-#ifndef NODE_4_NODE_4TOPOLOGY_HPP
-#define NODE_4_NODE_4TOPOLOGY_HPP
-// Included for access to Node_4::TopologyState and Node_4::ConfigObjects::pingEntries. These definitions are required by the
+#ifndef NODE_2_NODE_2TOPOLOGY_HPP
+#define NODE_2_NODE_2TOPOLOGY_HPP
+// Included for access to Node_2::TopologyState and Node_2::ConfigObjects::pingEntries. These definitions are required by the
 // autocoder, but are also used in this hand-coded topology.
-#include <Node_4/Top/Node_4TopologyDefs.hpp>
+#include <Deployments/Node_2/Top/Node_2TopologyDefs.hpp>
 
-// Remove unnecessary Node_4:: qualifications
-using namespace Node_4;
-namespace Node_4 {
+// Remove unnecessary Node_2:: qualifications
+using namespace Node_2;
+namespace Node_2 {
 /**
  * \brief initialize and run the F´ topology
  *
@@ -32,7 +32,7 @@ namespace Node_4 {
  * custom tasks often start radio communication it is convenient to start them last.
  *
  * The state argument carries command line inputs used to setup the topology. For an explanation of the required type
- * Node_4::TopologyState see: Node_4TopologyDefs.hpp.
+ * Node_2::TopologyState see: Node_2TopologyDefs.hpp.
  *
  * \param state: object shuttling CLI arguments (e.g. hostname/port, or UART baudrate) needed to construct the topology
  */
@@ -53,7 +53,7 @@ void setupTopology(const TopologyState& state);
  * Step 1, 2, 3, and 4 must occur in-order as the tasks must be stopped before being joined. These tasks must be stopped
  * and joined before any active resources may be deallocated.
  *
- * For an explanation of the required type Node_4::TopologyState see: Node_4TopologyDefs.hpp.
+ * For an explanation of the required type Node_2::TopologyState see: Node_2TopologyDefs.hpp.
  *
  * \param state: state object provided to setupTopology
  */
@@ -82,5 +82,5 @@ void startSimulatedCycle(Fw::TimeInterval interval = Fw::TimeInterval(1,0));
  */
 void stopSimulatedCycle();
 
-} // namespace Node_4
+} // namespace Node_2
 #endif

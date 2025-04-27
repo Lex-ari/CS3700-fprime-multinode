@@ -7,7 +7,7 @@
 #define NODE_1_NODE_1TOPOLOGY_HPP
 // Included for access to Node_1::TopologyState and Node_1::ConfigObjects::pingEntries. These definitions are required by the
 // autocoder, but are also used in this hand-coded topology.
-#include <Node_1/Top/Node_1TopologyDefs.hpp>
+#include <Deployments/Node_1/Top/Node_1TopologyDefs.hpp>
 
 // Remove unnecessary Node_1:: qualifications
 using namespace Node_1;

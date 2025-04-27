@@ -7,7 +7,7 @@
 #define NODE_0_NODE_0TOPOLOGY_HPP
 // Included for access to Node_0::TopologyState and Node_0::ConfigObjects::pingEntries. These definitions are required by the
 // autocoder, but are also used in this hand-coded topology.
-#include <Node_0/Top/Node_0TopologyDefs.hpp>
+#include <Deployments/Node_0/Top/Node_0TopologyDefs.hpp>
 
 // Remove unnecessary Node_0:: qualifications
 using namespace Node_0;
