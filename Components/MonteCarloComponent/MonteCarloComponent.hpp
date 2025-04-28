@@ -1,6 +1,6 @@
 // ======================================================================
 // \title  MonteCarloComponent.hpp
-// \author your_name_here
+// \author jeroldmanansala
 // \brief  hpp file for MonteCarlo component implementation class
 // ======================================================================
 
