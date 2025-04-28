@@ -32,7 +32,7 @@ namespace Components {
   void TestPong ::
     pong_handler(
         FwIndexType portNum,
-        U16 nodeID
+        U8 nodeID
     )
   {
     this->log_ACTIVITY_HI_Pong(nodeID);

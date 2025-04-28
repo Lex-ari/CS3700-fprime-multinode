@@ -143,5 +143,8 @@ module Node_0 {
     stack size Default.STACK_SIZE \
     priority 100 \
 
+  # Project Components
+
+  instance monteCarlo: Components.MonteCarloComponent base id 0x7000;
 
 }

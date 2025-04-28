@@ -1,18 +1,18 @@
 // ======================================================================
-// \title  TestPing.hpp
+// \title  LabCommander.hpp
 // \author oreomilkshake
-// \brief  hpp file for TestPing component implementation class
+// \brief  hpp file for LabCommander component implementation class
 // ======================================================================
 
-#ifndef Components_TestPing_HPP
-#define Components_TestPing_HPP
+#ifndef Components_LabCommander_HPP
+#define Components_LabCommander_HPP
 
-#include "Components/TestPing/TestPingComponentAc.hpp"
+#include "Components/LabCommander/LabCommanderComponentAc.hpp"
 
 namespace Components {
 
-  class TestPing :
-    public TestPingComponentBase
+  class LabCommander :
+    public LabCommanderComponentBase
   {
 
     public:
@@ -21,13 +21,13 @@ namespace Components {
       // Component construction and destruction
       // ----------------------------------------------------------------------
 
-      //! Construct TestPing object
-      TestPing(
+      //! Construct LabCommander object
+      LabCommander(
           const char* const compName //!< The component name
       );
 
-      //! Destroy TestPing object
-      ~TestPing();
+      //! Destroy LabCommander object
+      ~LabCommander();
 
     PRIVATE:
 
@@ -35,9 +35,10 @@ namespace Components {
       // Handler implementations for typed input ports
       // ----------------------------------------------------------------------
 
-      //! Handler implementation for pong
-      void pong_handler(
+      //! Handler implementation for monteCarloInPort
+      void monteCarloInPort_handler(
           FwIndexType portNum, //!< The port number
+          U32 positive_hits,
           U8 nodeID
       ) override;
 
@@ -47,13 +48,27 @@ namespace Components {
       // Handler implementations for commands
       // ----------------------------------------------------------------------
 
-      //! Handler implementation for command PingNodes
+      //! Handler implementation for command SET_MONTE_CARLO_POINTS
       //!
-      //! TODO
-      void PingNodes_cmdHandler(
+      //! Setting the amount of points to divide between the active deployments
+      void SET_MONTE_CARLO_POINTS_cmdHandler(
+          FwOpcodeType opCode, //!< The opcode
+          U32 cmdSeq, //!< The command sequence number
+          U32 total_points
+      ) override;
+
+      //! Handler implementation for command START_MONTE_CARLO
+      //!
+      //! Command to Start Monte Carlo on All Nodes
+      void START_MONTE_CARLO_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq //!< The command sequence number
       ) override;
+
+    PRIVATE:
+      U32 m_totalPositiveHits = 0;
+      U32 m_totalNodeHits = 0;
+      U32 m_numberTotalPoints = 0;
 
   };
 

@@ -38,7 +38,7 @@ namespace Components {
       //! Handler implementation for pong
       void pong_handler(
           FwIndexType portNum, //!< The port number
-          U16 nodeID
+          U8 nodeID
       ) override;
 
     PRIVATE:

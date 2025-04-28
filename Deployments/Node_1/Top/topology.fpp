@@ -43,6 +43,7 @@ module Node_1 {
     instance systemResources
 
     instance pong
+    instance monteCarlo
 
     # Hub Communication 
     instance hub
@@ -148,6 +149,9 @@ module Node_1 {
 
       hub.portOut[0] -> pong.pong
       pong.ping -> hub.portIn[0]
+
+      hub.portOut[1] -> monteCarlo.AmountIn
+      monteCarlo.PositiveHits -> hub.portIn[1]
     }
 
     connections send_hub {

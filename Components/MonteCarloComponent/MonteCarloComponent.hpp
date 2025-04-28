@@ -32,8 +32,9 @@ namespace Components {
 
       //! Handler implementation for AmountIn
       void AmountIn_handler(
-          NATIVE_INT_TYPE portNum, //!< The port number
-          U32 amount //!< The amount of random samples
+          FwIndexType portNum, //!< The port number
+          U32 samples,
+          U8 nodeID
       ) override;
 
   };

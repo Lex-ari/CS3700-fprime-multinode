@@ -43,6 +43,8 @@ module Commander {
     instance systemResources
 
     instance ping
+    instance labCommander
+    # instance monteCarloComponent
 
     # Hub Communication 
     instance hub_0
@@ -228,6 +230,16 @@ module Commander {
       hub_0.portOut[0] -> ping.pong
       hub_1.portOut[0] -> ping.pong
       hub_2.portOut[0] -> ping.pong
+
+      # labCommander.monteCarloOutPort -> monteCarloComponent.AmountIn
+      # monteCarloComponent.PositiveHits -> labCommander.monteCarloInPort
+      labCommander.monteCarloOutPort[0] -> hub_0.portIn[1]
+      labCommander.monteCarloOutPort[1] -> hub_1.portIn[1]
+      labCommander.monteCarloOutPort[2] -> hub_2.portIn[1]
+
+      hub_0.portOut[1] -> labCommander.monteCarloInPort
+      hub_1.portOut[1] -> labCommander.monteCarloInPort
+      hub_2.portOut[1] -> labCommander.monteCarloInPort
     }
 
   }
