@@ -15,7 +15,16 @@ namespace Components {
     public MonteCarloComponentComponentBase
   {
 
-    public:
+    public:          
+     //! Construct MonteCarloComponent object
+     MonteCarloComponent(
+          const char* const compName //!< The component name
+      );
+
+      //! Destroy MonteCarloComponent object
+      ~MonteCarloComponent();
+
+      PRIVATE:
 
       // ----------------------------------------------------------------------
       // Handler implementations for typed input ports
