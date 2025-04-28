@@ -9,6 +9,17 @@
 
 namespace Components {
 
+// Constructor
+MonteCarloComponent::MonteCarloComponent(const char* compName) :
+    MonteCarloComponentComponentBase(compName)
+{
+}
+
+// Destructor
+MonteCarloComponent::~MonteCarloComponent() {
+}
+
+
 void MonteCarloComponent :: AmountIn_handler(
     const NATIVE_INT_TYPE portNum,
     U32 amount
